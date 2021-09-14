@@ -6,7 +6,7 @@ pipeline {
         sh '''
             python3 -m venv helloworld
             . ./helloworld/bin/activate
-            pip install -r requirements.txt
+            sudo -H pip install -r requirements.txt
             pytest -v
         '''
       }
