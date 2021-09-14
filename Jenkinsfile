@@ -5,7 +5,7 @@ pipeline {
       steps {
         sh '''
             python3 -m venv helloworld
-            source helloworld/bin/activate
+            . ./helloworld/bin/activate
             pip install -r requirements.txt
             pytest -v
         '''
