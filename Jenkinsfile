@@ -6,7 +6,7 @@ pipeline {
     stage('build') {
       steps {
         sh '''
-            python3 -m venv helloworld
+            python -m venv helloworld
             . ./helloworld/bin/activate
             pip install -r requirements.txt
             pytest -v
