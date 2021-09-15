@@ -1,16 +1,11 @@
 pipeline {
   environment { 
-      DOCKER_IMAGE = ''
+      D_IMAGE = ''
   }
   agent {
     label 'master'
   }
   stages {
-    stage("Checkout") {
-      steps {
-        checkout scm
-      }
-    }
     stage('Build') {
       steps {
         sh """
@@ -31,7 +26,8 @@ pipeline {
     stage('image-build') {
       steps{
         script {
-          DOCKER_IMAGE = docker.build "10.34.11.198:5000/sppline:$BUILD_NUMBER"
+          D_IMAGE = "10.34.11.198:5000/sppline:$BUILD_NUMBER"
+           docker.build "10.34.11.198:5000/sppline:$BUILD_NUMBER"
         }
         sh "echo $DOCKER_IMAGE"
       }
@@ -39,7 +35,7 @@ pipeline {
     stage('image-push') {
       steps{
         script {
-          docker.push(DOCKER_IMAGE)
+          docker.push(D_IMAGE)
         }
       }
     }
