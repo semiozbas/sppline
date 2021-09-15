@@ -1,13 +1,17 @@
 pipeline {
-  environment {
-    registry = "10.34.11.198:5000/"
-    dockerImage = ''
+  environment { 
+      DOCKER_IMAGE = ''
   }
   agent {
     label 'master'
   }
   stages {
-    stage('build') {
+    stage("Checkout") {
+      steps {
+        checkout scm
+      }
+    }
+    stage('Build') {
       steps {
         sh """
 	/usr/bin/python3 -m venv helloworld-build
@@ -16,7 +20,7 @@ pipeline {
         """
       }
     }
-    stage('test') {
+    stage('Test') {
       steps {
         sh """
 	. ./helloworld-build/bin/activate
@@ -24,12 +28,17 @@ pipeline {
 	"""
       }   
     }
-    stage('create-image') {
+    stage('image-build') {
       steps{
-        withEnv(["HOME=${env.WORKSPACE}"]) {
-          script {
-            dockerImage = docker.build registry + "sppline:$BUILD_NUMBER"
-          }
+        script {
+          DOCKER_IMAGE = docker.build "10.34.11.198:5000/sppline:$BUILD_NUMBER"
+        }
+      }
+    }
+    stage('image-push') {
+      steps{
+        script {
+          docker.push(DOCKER_IMAGE)
         }
       }
     }
