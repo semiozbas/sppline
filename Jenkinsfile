@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "http://10.34.11.198:5000"
+    registry = "10.34.11.198:5000/"
     dockerImage = ''
   }
   agent {
