@@ -20,5 +20,15 @@ pipeline {
 	"""
       }   
     }
+    stage('create-image') {
+      docker.withRegistry('http://10.34.11.198:5000') {
+
+        def customImage = docker.build("sppline:${env.BUILD_ID}")
+
+        /* Push the container to the custom Registry */
+        customImage.push()
+    }
+
+    }
   }
 }
