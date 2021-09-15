@@ -26,8 +26,10 @@ pipeline {
     }
     stage('create-image') {
       steps{
-        script {
-          dockerImage = docker.build registry + "sppline:$BUILD_NUMBER"
+        withEnv(["HOME=${env.WORKSPACE}"]) {
+          script {
+            dockerImage = docker.build registry + "sppline:$BUILD_NUMBER"
+          }
         }
       }
     }
