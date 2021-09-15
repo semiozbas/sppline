@@ -21,7 +21,7 @@ pipeline {
       }   
     }
   }
-  node {
-    checkout scm
-  }
+}
+node {
+  checkout scm
 }
