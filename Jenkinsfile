@@ -1,4 +1,8 @@
 pipeline {
+  environment {
+    registry = "http://10.34.11.198:5000"
+    dockerImage = ''
+  }
   agent {
     label 'master'
   }
@@ -20,15 +24,12 @@ pipeline {
 	"""
       }   
     }
-  }
-}
-node {
-  checkout scm
-  environment {
-        HOME = "${env.WORKSPACE}"
-  }
-  docker.withRegistry('http://10.34.11.198:5000') { 
-    def customImage = docker.build("sppline:${env.BUILD_ID}")
-    customImage.push()
+    stage('create-image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + "sppline:$BUILD_NUMBER"
+        }
+      }
+    }
   }
 }
