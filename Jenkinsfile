@@ -3,7 +3,7 @@ pipeline {
     label 'master'
   }
   stages {
-    stage('build') {
+   G stage('build') {
       steps {
         sh """
 	/usr/bin/python3 -m venv helloworld-build
@@ -20,15 +20,11 @@ pipeline {
 	"""
       }   
     }
-    stage('create-image') {
-      docker.withRegistry('http://10.34.11.198:5000') {
 
-        def customImage = docker.build("sppline:${env.BUILD_ID}")
+  }
+  node {
+      checkout scm
 
-        /* Push the container to the custom Registry */
-        customImage.push()
-    }
 
-    }
   }
 }
