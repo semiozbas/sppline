@@ -24,4 +24,8 @@ pipeline {
 }
 node {
   checkout scm
+  docker.withRegistry('http://10.34.11.198:5000') { 
+    def customImage = docker.build("sppline:${env.BUILD_ID}")
+    customImage.push()
+  }
 }
