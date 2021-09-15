@@ -29,7 +29,7 @@ pipeline {
           D_IMAGE = "10.34.11.198:5000/sppline:$BUILD_NUMBER"
            docker.build "10.34.11.198:5000/sppline:$BUILD_NUMBER"
         }
-        sh "echo $_IMAGE"
+        sh "echo $D_IMAGE"
       }
     }
     stage('image-push') {
