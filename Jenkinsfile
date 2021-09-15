@@ -26,7 +26,7 @@ pipeline {
     stage('image-build') {
       steps{
         script {
-          D_IMAGE = docker.build "10.34.11.198:5000/sppline:$BUILD_NUMBER"
+          D_IMAGE = docker.build "registry.kartaca.com:5000/sppline:$BUILD_NUMBER"
         }
         sh "echo $D_IMAGE"
       }
