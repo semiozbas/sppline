@@ -3,7 +3,7 @@ pipeline {
     label 'master'
   }
   stages {
-   G stage('build') {
+    stage('build') {
       steps {
         sh """
 	/usr/bin/python3 -m venv helloworld-build
@@ -20,11 +20,8 @@ pipeline {
 	"""
       }   
     }
-
   }
   node {
-      checkout scm
-
-
+    checkout scm
   }
 }
