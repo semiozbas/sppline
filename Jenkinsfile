@@ -6,18 +6,15 @@ pipeline {
     stage('build') {
       steps {
         sh '''
-            whoami
-            pwd
-            python -m venv helloworld
-            . ./helloworld/bin/activate
+            /usr/bin/python3 -m venv helloworld-build
+            . ./helloworld-build/bin/activate
             pip install -r requirements.txt
-            pytest -v
         '''
       }
     }
     stage('test') {
       steps {
-        sh 'python test.py'
+        sh 'pytest test.py'
       }   
     }
   }
