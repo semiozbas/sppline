@@ -31,13 +31,14 @@ kind: Service
 metadata:
   name: sppline-service
   namespace: sppline
+  labels:
+    app: flask
 spec:
   selector:
     app: flask
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 80
   type: LoadBalancer
   loadBalancerIP: 10.34.11.228
 
