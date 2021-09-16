@@ -7,7 +7,10 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'pip install flask'
+                sh """
+		apt-get update
+		apt-get install pyhton3
+		"""
             }
         }
         stage('test') {
