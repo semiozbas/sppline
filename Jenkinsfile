@@ -1,7 +1,5 @@
+def D_IMAGE
 pipeline {
-  environment { 
-      D_IMAGE = ''
-  }
   agent {
     label 'master'
   }
