@@ -36,5 +36,13 @@ pipeline {
         }
       }
     }
+    stage('deploy-k8s') {
+      steps{
+	kubernetesDeploy(kubeconfigId: 'anthos-k8s-kubeconfig',
+         configs: 'k8s-resources.yaml',
+	 enableConfigSubstitution: true        
+	)
+      }
+    }
   }
 }
