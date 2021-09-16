@@ -4,7 +4,6 @@ pipeline {
       	cloud 'anthos-gke'
       }
     }
-}
 
 
 podTemplate(containers: [
@@ -36,4 +35,5 @@ podTemplate(containers: [
         }
 
     }
+}
 }
