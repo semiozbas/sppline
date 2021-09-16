@@ -44,5 +44,6 @@ pipeline {
           KubernetesDeploy(configs: "k8s-resources.yaml", kubeconfigId: "anthos")
         }
       }
+    }
   }
 }
