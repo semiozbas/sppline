@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: $D_IMAGE
+        image: registry.kartaca.com:5000/sppline:$BUILD_NUMBER
         ports:
         - containerPort: 80
