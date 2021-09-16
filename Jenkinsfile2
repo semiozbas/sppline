@@ -7,9 +7,10 @@ pipeline {
 	stages {
         stage('build') {
             steps {
-                sh '
+                sh """
 		sleep 400
-		pip install flask'
+		pip install flask
+		"""
             }
         }
         stage('test') {
