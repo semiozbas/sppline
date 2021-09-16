@@ -38,6 +38,7 @@ pipeline {
     }
     stage('deploy-k8s') {
       steps{
+        sh 'echo $D_IMAGE'
 	kubernetesDeploy(kubeconfigId: 'anthos-k8s-kubeconfig',
          configs: 'k8s-resources.yaml',
 	 enableConfigSubstitution: true        
