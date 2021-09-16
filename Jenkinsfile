@@ -35,6 +35,7 @@ pipeline {
       steps{
         script {
           D_IMAGE.push()
+	  D_IMAGE = "registry.kartaca.com:5000/sppline:$BUILD_NUMBER"
         }
       }
     }
