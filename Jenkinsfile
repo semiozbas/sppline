@@ -26,7 +26,7 @@ pipeline {
     stage('image-build') {
       steps{
         script {
-          D_IMAGE = docker.build "registry.kartaca.com:5000/sppline:$BUILD_NUMBER"
+          D_IMAGE = docker.build "reg-anthos-test.kartaca.com:5000/sppline:$BUILD_NUMBER"
         }
         sh "echo $D_IMAGE"
       }
@@ -35,13 +35,11 @@ pipeline {
       steps{
         script {
           D_IMAGE.push()
-	  D_IMAGE = "registry.kartaca.com:5000/sppline:$BUILD_NUMBER"
         }
       }
     }
     stage('deploy-k8s') {
       steps{
-        sh "echo $D_IMAGE"
 	kubernetesDeploy(kubeconfigId: 'anthos-k8s-kubeconfig',
          configs: 'k8s-resources.yaml',
 	 enableConfigSubstitution: true 

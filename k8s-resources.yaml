@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: flask
-        image: registry.kartaca.com:5000/sppline:$BUILD_NUMBER
+        image: reg-anthos-test.kartaca.com:5000/sppline:$BUILD_NUMBER
         ports:
         - containerPort: 80
