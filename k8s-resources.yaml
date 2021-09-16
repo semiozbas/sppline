@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: $D_IMAGE
+        image: ${D_IMAGE}
         ports:
         - containerPort: 80
