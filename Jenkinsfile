@@ -38,12 +38,5 @@ pipeline {
         }
       }
     }
-    stage('Deploy') {
-      steps{
-        script {
-          KubernetesDeploy(configs: "k8s-resources.yaml", kubeconfigId: "anthos")
-        }
-      }
-    }
   }
 }
